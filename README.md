@@ -160,7 +160,7 @@
 			SELECT  ID, NAME, AMOUNT, DATE FROM CUSTOMERS, ORDERS;
 			
 			
-#UNIONS
+# UNIONS
 	* The SQL UNION clause/operator is used to combine the resultsof two or more SELECT statements
 	* Without returning any duplicate rows.
 	* To use this UNION clause, each SELECT statement must have
@@ -183,9 +183,9 @@
 	   RIGHT JOIN ORDERS
 	   ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
 	   
-#UNION ALL 
-	UNION ALL operator is used to combine the results of two SELECT statements 
-	including duplicate rows.
+# UNION ALL 
+	* UNION ALL operator is used to combine the results of two SELECT statements 
+	* Including duplicate rows.
 	
 	
 	SELECT  ID, NAME, AMOUNT, DATE
