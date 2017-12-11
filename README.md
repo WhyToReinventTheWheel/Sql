@@ -6,6 +6,14 @@
   - Drop vs TRUNCATE : If you actually want to remove the table definitions as well as the data, 
 	simply drop the tables. TRUNCATE TABLE empties it, but leaves its structure 
 	for future data. Removes all rows from a table without logging the individual row 
+	* Since TRUNCATE is a DDL command, it cannot be rolled back. so it need not store the 
+		table values into the REDO buffer. Whereas DELETE is a DML command and it can be 
+		rolled back. so DELETE command have to store all data into REDO buffer before 
+		deleting it from table. it will take some time to copy data into REDO buffer. 
+		So, obviously TRUNCATE is much faster than DELETE.
+	* TRUNCATE is faster than DROP because DROP does double work - First it removes data and 
+		secondly it removes the structure of table where as truncate does only one work - 
+		it just deletes the data.
   - SQL is case insensitive, which means SELECT and select have same meaning in SQL statements. 
   - SELECT column1, column2....columnN FROM table_name;
   - SELECT column1, column2....columnN FROM table_name WHERE CONDITION;
@@ -61,7 +69,23 @@
 		1			1			318
 		2			0			7
 		2			1			266
-	 
+# HAVING Clause	 
+	The HAVING Clause enables you to specify conditions that filter which group results 
+	appear in the results.
+	The WHERE clause places conditions on the selected columns, whereas the HAVING 
+	clause places conditions on groups created by the GROUP BY clause.
+	SELECT column1, column2
+	FROM table1, table2
+	WHERE [ conditions ]
+	GROUP BY column1, column2
+	HAVING [ conditions ]
+	ORDER BY column1, column2
+	
+	SELECT AGE, AVG(SALARY), COUNT(age)
+	FROM CUSTOMERS
+	GROUP BY age
+	HAVING COUNT(age) >= 2;
+	
 # Constraints
 	CUSTOMERS table
 	
@@ -134,3 +158,42 @@
 			
 	CARTESIAN JOIN/CROSS JOIN − returns the Cartesian product of the sets of records from the two or more joined tables.
 			SELECT  ID, NAME, AMOUNT, DATE FROM CUSTOMERS, ORDERS;
+			
+			
+#UNIONS
+	* The SQL UNION clause/operator is used to combine the resultsof two or more SELECT statements
+	* Without returning any duplicate rows.
+	* To use this UNION clause, each SELECT statement must have
+		- The same number of columns selected
+		- The same number of column expressions
+		- The same data type and
+		- Have them in the same order
+		
+	SELECT column1 [, column2 ]	FROM table1 [, table2 ]	[WHERE condition]
+	UNION
+	SELECT column1 [, column2 ]	FROM table1 [, table2 ]	[WHERE condition]
+	
+	SELECT  ID, NAME, AMOUNT, DATE
+	   FROM CUSTOMERS
+	   LEFT JOIN ORDERS
+	   ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID
+	UNION
+	   SELECT  ID, NAME, AMOUNT, DATE
+	   FROM CUSTOMERS
+	   RIGHT JOIN ORDERS
+	   ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
+	   
+#UNION ALL 
+	UNION ALL operator is used to combine the results of two SELECT statements 
+	including duplicate rows.
+	
+	
+	SELECT  ID, NAME, AMOUNT, DATE
+		FROM CUSTOMERS
+		LEFT JOIN ORDERS
+		ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID
+	UNION ALL
+		SELECT  ID, NAME, AMOUNT, DATE
+		FROM CUSTOMERS
+		RIGHT JOIN ORDERS
+		ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
