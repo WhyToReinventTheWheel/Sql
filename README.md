@@ -207,13 +207,13 @@
 	
 	
 # Query 
-	create  table sakila.MOHIT_TEST (id int, name varchar(10), email varchar(50));
-	INSERT sakila.MOHIT_TEST VALUES (1,'John','John-email');
-	INSERT sakila.MOHIT_TEST VALUES (2,'John','John-email');
-	INSERT sakila.MOHIT_TEST VALUES (3,'fred','John-email');
-	INSERT sakila.MOHIT_TEST VALUES (4,'fred','fred-email');
-	INSERT sakila.MOHIT_TEST VALUES (5,'sam','sam-email');
-	INSERT sakila.MOHIT_TEST VALUES (6,'sam','sam-email');
+	create  table sakila.TEST (id int, name varchar(10), email varchar(50));
+	INSERT sakila.TEST VALUES (1,'John','John-email');
+	INSERT sakila.TEST VALUES (2,'John','John-email');
+	INSERT sakila.TEST VALUES (3,'fred','John-email');
+	INSERT sakila.TEST VALUES (4,'fred','fred-email');
+	INSERT sakila.TEST VALUES (5,'sam','sam-email');
+	INSERT sakila.TEST VALUES (6,'sam','sam-email');
 	commit;
 	
 	Create table sakila.Employees
@@ -234,7 +234,7 @@
 
 SELECT
     name,email, COUNT(*) AS CountOf
-    FROM sakila.MOHIT_TEST
+    FROM sakila.TEST
     GROUP BY name,email
     HAVING COUNT(*)>1
 
