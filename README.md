@@ -197,3 +197,72 @@
 		FROM CUSTOMERS
 		RIGHT JOIN ORDERS
 		ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
+		
+# PL/SQL
+	
+		
+# Transaction 	
+	
+	https://www.youtube.com/watch?v=CigdiifWItk
+	
+	
+# Query 
+	create  table sakila.MOHIT_TEST (id int, name varchar(10), email varchar(50));
+	INSERT sakila.MOHIT_TEST VALUES (1,'John','John-email');
+	INSERT sakila.MOHIT_TEST VALUES (2,'John','John-email');
+	INSERT sakila.MOHIT_TEST VALUES (3,'fred','John-email');
+	INSERT sakila.MOHIT_TEST VALUES (4,'fred','fred-email');
+	INSERT sakila.MOHIT_TEST VALUES (5,'sam','sam-email');
+	INSERT sakila.MOHIT_TEST VALUES (6,'sam','sam-email');
+	commit;
+	
+	Create table sakila.Employees
+	(
+		 ID int,
+		 FirstName varchar(50),
+		 LastName varchar(50),
+		 Gender varchar(50),
+		 Salary int
+	)
+	Insert into sakila.Employees values (1, 'Mark', 'Hastings', 'Male', 60000);
+	Insert into sakila.Employees values (2, 'Mark1', 'Hastings', 'Male', 60001);
+	Insert into sakila.Employees values (3, 'Mark2', 'Hastings', 'Male', 60002);
+	Insert into sakila.Employees values (4, 'Test', 'Hoskins', 'Male', 60000);
+	Insert into sakila.Employees values (5, 'Test1', 'Hoskins', 'Male', 70000);
+	Insert into sakila.Employees values (6, 'Test3', 'Hoskins', 'Male', 70000);
+	commit;
+
+SELECT
+    name,email, COUNT(*) AS CountOf
+    FROM sakila.MOHIT_TEST
+    GROUP BY name,email
+    HAVING COUNT(*)>1
+
+	
+	1) Write a query to select Nth maximum salary from table
+		Logic is we try the count of row greater then current row,
+		for 1st Max , count will be zero.
+		for 2nd Max , only one greater value row exits.
+		
+		select * from sakila.country as C1 where (5-1) 
+				= (SELECT count(distinct(country_id)) 
+					FROM sakila.country as C2 where c2.country_id > c1.country_id ) ;
+
+	2) Write a query to select top N salaries from table
+		SELECT country_id  FROM sakila.country  order by country_id DESC limit 10;
+
+	3) Write a query to select top N salaries from each department table
+	
+	4) Write a query to select/delete duplicate rows from the EMP table
+		
+	5) Write a query to select only those employee information who are earning the same salary?
+		select * from sakila.Employees where Salary in
+		 (select Salary from sakila.Employees
+			 group by Salary
+			 having count(Salary)>=2
+		 )
+
+
+		select e1.* from sakila.Employees e1,sakila.Employees e2
+			where e1.Salary=e2.Salary
+			and e1.ID <> e2.ID
