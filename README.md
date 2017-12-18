@@ -4,9 +4,9 @@
 	
 # ACID
 	A- Atomicity 
-		Either all or non 
+		Either all or none
 	C- consitency
-		Transaction should lead to one consiency state to another 
+		Transaction should lead to one consiency state to another
 		example transfer found from Acount A to Acount B
 			final consitency state A-100 and B+ 100 so it is programmer responsibilty 
 	I- Isolation 
