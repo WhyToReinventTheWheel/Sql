@@ -1,4 +1,19 @@
 # Sql
+* https://www.youtube.com/watch?v=t3cs_UurqRc
+	
+	
+# ACID
+	A- Atomicity 
+		Either all or non 
+	C- consitency
+		Transaction should lead to one consiency state to another 
+		example transfer found from Acount A to Acount B
+			final consitency state A-100 and B+ 100 so it is programmer responsibilty 
+	I- Isolation 
+		When multiple Transaction working they work smoothly 
+	D- Durability 
+		if changes complete they should be permant 
+
 * Basics https://www.tutorialspoint.com/sql/
   - DML VS DDL -- DML is abbreviation of Data Manipulation Language. It is used to retrieve, store, modify, 
 	delete, insert and update data in database. DDL is abbreviation of Data Definition Language. 
